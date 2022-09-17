@@ -19,6 +19,7 @@ exports.getCalls = async (req, res) => {
   const result = await sequelize.query(sqlQuery);
   console.log("result-call-dat*****",result);
   res.send({status:true, result:result[0]});
+  
 };
 
 exports.saveToken = async (req, res) => {
