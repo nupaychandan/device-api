@@ -30,7 +30,7 @@ module.exports = db;
 // MSSQL Server Connection local
 ///*
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize("rikarena_yokedroid", "rikarena_yokedroid", "RikRit!rik123", {
+const sequelize = new Sequelize("rikarena_dm", "rikarena_society", "RikRit!rik123", {
     host: "198.38.83.200",
     dialect: "mssql",
     pool: {
@@ -38,6 +38,7 @@ const sequelize = new Sequelize("rikarena_yokedroid", "rikarena_yokedroid", "Rik
         min: 0,
         acquire: 30000,
         idle: 10000
+        
     }
 });
 

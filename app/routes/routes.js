@@ -17,6 +17,9 @@ module.exports = app => {
 
     router.post("/savesockets", cntl.saveSockets);
     
+    router.post("/register", cntl.register);
+    
+    router.post("/login", cntl.login);
     //***************************************************
 
     app.use('/api', router);
