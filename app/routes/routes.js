@@ -20,6 +20,17 @@ module.exports = app => {
     router.post("/register", cntl.register);
     
     router.post("/login", cntl.login);
+    
+    router.post("/GetDevice", cntl.getDevice);
+  
+    router.post("/SetDevice", cntl.setDevice);
+  
+    router.post("/DeleteDevice", cntl.deleteDevice);
+  
+    router.post("/GetUsers", cntl.getUsers);
+
+    router.post("/GetDeviceType", cntl.getDeviceType);
+  
     //***************************************************
 
     app.use('/api', router);

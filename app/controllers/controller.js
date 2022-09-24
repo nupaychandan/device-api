@@ -19,7 +19,6 @@ exports.getCalls = async (req, res) => {
   const result = await sequelize.query(sqlQuery);
   console.log("result-call-dat*****",result);
   res.send({status:true, result:result[0]});
-
 };
 
 exports.register = async(req,res)=>{
@@ -29,9 +28,6 @@ exports.register = async(req,res)=>{
   console.log("result-sp_RegisterDevice*****",result);
   res.send({status:true, result:result[0]});
 }
-
-
-
 exports.login = async(req,res)=>{
   console.log("login data*******",req.body);
   const sqlQuery = 'sp_Login  :EmailId, :Password';
@@ -47,6 +43,56 @@ exports.saveToken = async (req, res) => {
   console.log("result-sp_insertToken*****",result);
   res.send({status:true, result:result[0]});
 };
+
+
+exports.getDevice = async (req, res) => {
+  console.log("device data*******",req.body);
+  const sqlQuery = 'sp_GetDevice :Id, :UserId';
+  const result = await sequelize.query(sqlQuery, { replacements: {Id: req.body.Id, UserId: req.body.UserId}});
+  console.log("result-sp_GetDevice*****",result);
+  res.send({status:true, result:result[0]});
+};
+
+exports.setDevice = async (req, res) => {
+  console.log("set device data*******",req.body);
+  const sqlQuery = 'sp_SetDevice :Id, :Type, :Name, :Description, :ZoneId, :Lt, :Lg, :UserId';
+  const result = await sequelize.query(sqlQuery, { replacements: {Id: req.body.Id,Type: req.body.Type,Name: req.body.Name,Description: req.body.Description,ZoneId:req.body.ZoneId,Lt: req.body.Lt,Lg: req.body.Lg,UserId: req.body.UserId}});
+  console.log("result-sp_SetDevice*****",result);
+  res.send({status:true, result:result[0]});
+};
+
+exports.deleteDevice = async (req, res) => {
+  console.log("delete device data*******",req.body);
+  const sqlQuery = 'sp_DeleteDevice :Id';
+  const result = await sequelize.query(sqlQuery, { replacements: {Id: req.body.Id}});
+  console.log("result-sp_DeleteDevice*****",result);
+  res.send({status:true, result:result[0]});
+};
+
+exports.getUsers = async (req, res) => {
+  console.log("get user data*******",req.body);
+  const sqlQuery = 'sp_GetUser :UserId';
+  const result = await sequelize.query(sqlQuery, { replacements: {UserId: req.body.UserId}});
+  console.log("result-sp_GetUser*****",result);
+  res.send({status:true, result:result[0]});
+};
+
+exports.getDeviceType = async (req, res) => {
+  const sqlQuery = 'sp_GetDeviceType';
+  const result = await sequelize.query(sqlQuery);
+  console.log("result-DeviceType*****",result);
+  res.send({status:true, result:result[0]});
+};
+
+
+
+
+
+
+
+
+
+
 
 exports.saveSockets = async (req, res) => {
   console.log("sockets data*******",req.body);
