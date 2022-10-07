@@ -25,11 +25,11 @@ module.exports = app => {
   
     router.post("/SetDevice", cntl.setDevice);
   
-    router.post("/DeleteDevice", cntl.deleteDevice);
+    router.delete("/DeleteDevice", cntl.deleteDevice);
   
     router.post("/GetUsers", cntl.getUsers);
 
-    router.post("/GetDeviceType", cntl.getDeviceType);
+    router.get("/GetDeviceType", cntl.getDeviceType);
   
     //***************************************************
 
