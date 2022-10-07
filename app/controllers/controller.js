@@ -22,9 +22,21 @@ exports.getCalls = async (req, res) => {
 };
 
 exports.register = async(req,res)=>{
+  if(req.body.name == "" || req.body.name == null){
+    res.send({status:false, result:"Name should not be blank."});  
+  }
+  if(req.body.emailId == "" || req.body.emailId == null){
+    res.send({status:false, result:"emailId should not be blank."});  
+  }
+  if(req.body.password == "" || req.body.password == null){
+    res.send({status:false, result:"Password should not be blank."});  
+  }
+  if(req.body.mobileno == "" || req.body.mobileno == null){
+    res.send({status:false, result:"MobileNo should not be blank."});  
+  }
   console.log("reg data*******",req.body);
-  const sqlQuery = 'sp_RegisterDevice :Name, :EmailId, :Password';
-  const result = await sequelize.query(sqlQuery, { replacements: {Name: req.body.name, EmailId: req.body.emailId,Password:req.body.password}});
+  const sqlQuery = 'sp_RegisterUser :Name, :EmailId, :Password, :MobileNo';
+  const result = await sequelize.query(sqlQuery, { replacements: {Name: req.body.name, EmailId: req.body.emailId,Password:req.body.password,MobileNo:req.body.mobileno}});
   console.log("result-sp_RegisterDevice*****",result);
   res.send({status:true, result:result[0]});
 }
