@@ -58,9 +58,13 @@ exports.saveToken = async (req, res) => {
 
 
 exports.getDevice = async (req, res) => {
+  if(req.body.DeviceType == 0 || req.body.DeviceType == null){
+    res.send({status:false, result:"Device type must be greater than 0."});  
+  }
   console.log("device data*******",req.body);
-  const sqlQuery = 'sp_GetDevice :Id, :UserId';
-  const result = await sequelize.query(sqlQuery, { replacements: {Id: req.body.Id, UserId: req.body.UserId}});
+  const sqlQuery = 'sp_GetDevice :Id, :UserId, :DeviceType';
+  const result = await sequelize.query(sqlQuery, { replacements: {Id: req.body.Id, UserId: req.body.UserId,
+  DeviceType : req.body.DeviceType}});
   console.log("result-sp_GetDevice*****",result);
   res.send({status:true, result:result[0]});
 };
