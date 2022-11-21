@@ -31,6 +31,9 @@ module.exports = app => {
 
     router.get("/GetDeviceType", cntl.getDeviceType);
   
+    
+    router.post("/ForgotPassword", cntl.forgotPassword);
+  
     //***************************************************
 
     app.use('/api', router);
