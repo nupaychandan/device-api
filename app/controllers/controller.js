@@ -117,6 +117,7 @@ exports.changePassword = async (req, res) => {
   console.log("result-Change Password*****",result);
     res.send({status:result[0][0].status, result:result[0][0].Message});
   };
+  
 
 exports.saveSockets = async (req, res) => {
   console.log("sockets data*******",req.body);

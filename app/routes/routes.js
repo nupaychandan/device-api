@@ -33,6 +33,7 @@ module.exports = app => {
   
     
     router.post("/ChangePassword", cntl.changePassword);
+    
   
     //***************************************************
 
