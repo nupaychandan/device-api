@@ -101,18 +101,22 @@ exports.getDeviceType = async (req, res) => {
 };
 
 
-exports.forgotPassword = async (req, res) => {
+exports.changePassword = async (req, res) => {
   if(req.body.UserId < 0|| req.body.UserId == null){
     res.send({status:false, result:"UserId must be greater than 0."});  
   }
   if(req.body.Password == "" || req.body.Password == null){
     res.send({status:false, result:"Password should not be blank."});  
   }
-  const sqlQuery = 'sp_forgotPassword :UserId , :Password';
-  const result = await sequelize.query(sqlQuery, { replacements: {UserId: req.body.UserId ,Password :req.body.Password }});
-  console.log("result-forgot Password*****",result);
-  res.send({status:true, result:result[0]});
-};
+  if(req.body.OldPassword == "" || req.body.OldPassword == null){
+    res.send({status:false, result:"OldPassword should not be blank."});  
+  }
+
+  const sqlQuery = 'sp_ChangePassword :UserId ,:OldPassword, :Password';
+  const result = await sequelize.query(sqlQuery, { replacements: {UserId: req.body.UserId ,OldPassword :req.body.OldPassword ,Password :req.body.Password }});
+  console.log("result-Change Password*****",result);
+    res.send({status:result[0][0].status, result:result[0][0].Message});
+  };
 
 exports.saveSockets = async (req, res) => {
   console.log("sockets data*******",req.body);

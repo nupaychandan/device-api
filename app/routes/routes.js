@@ -32,7 +32,7 @@ module.exports = app => {
     router.get("/GetDeviceType", cntl.getDeviceType);
   
     
-    router.post("/ForgotPassword", cntl.forgotPassword);
+    router.post("/ChangePassword", cntl.changePassword);
   
     //***************************************************
 
