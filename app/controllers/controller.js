@@ -100,7 +100,6 @@ exports.getDeviceType = async (req, res) => {
   res.send({status:true, result:result[0]});
 };
 
-
 exports.changePassword = async (req, res) => {
   if(req.body.UserId < 0|| req.body.UserId == null){
     res.send({status:false, result:"UserId must be greater than 0."});  
@@ -118,7 +117,6 @@ exports.changePassword = async (req, res) => {
     res.send({status:result[0][0].status, result:result[0][0].Message});
   };
   
-
 exports.saveSockets = async (req, res) => {
   console.log("sockets data*******",req.body);
   sockets = req.body.sockets;

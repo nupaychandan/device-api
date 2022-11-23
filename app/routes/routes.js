@@ -34,7 +34,6 @@ module.exports = app => {
     
     router.post("/ChangePassword", cntl.changePassword);
     
-  
     //***************************************************
 
     app.use('/api', router);
