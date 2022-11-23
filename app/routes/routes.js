@@ -31,7 +31,7 @@ module.exports = app => {
 
     router.get("/GetDeviceType", cntl.getDeviceType);
   
-    
+    // New API for Chnage Password
     router.post("/ChangePassword", cntl.changePassword);
     
     //***************************************************

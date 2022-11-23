@@ -99,6 +99,7 @@ exports.getDeviceType = async (req, res) => {
   console.log("result-DeviceType*****",result);
   res.send({status:true, result:result[0]});
 };
+// Start chnage password
 
 exports.changePassword = async (req, res) => {
   if(req.body.UserId < 0|| req.body.UserId == null){
@@ -111,6 +112,7 @@ exports.changePassword = async (req, res) => {
     res.send({status:false, result:"OldPassword should not be blank."});  
   }
 
+  // End of chnage password
   const sqlQuery = 'sp_ChangePassword :UserId ,:OldPassword, :Password';
   const result = await sequelize.query(sqlQuery, { replacements: {UserId: req.body.UserId ,OldPassword :req.body.OldPassword ,Password :req.body.Password }});
   console.log("result-Change Password*****",result);
