@@ -38,18 +38,24 @@ exports.register = async(req,res)=>{
   const sqlQuery = 'sp_RegisterUser :Name, :EmailId, :Password, :MobileNo';
   const result = await sequelize.query(sqlQuery, { replacements: {Name: req.body.name, EmailId: req.body.emailId,Password:req.body.password,MobileNo:req.body.mobileno}});
   console.log("result-sp_RegisterDevice*****",result);
-  res.send({status:true, result:result[0]});
+  if(result[0].length == 0)
+    res.send({status:false, result:"Registration failed .Please try Again !!"});
+  else
+   res.send({status:true, result:result[0]});
 }
 exports.login = async(req,res)=>{
   console.log("login data*******",req.body);
   const sqlQuery = 'sp_Login  :EmailId, :Password';
   const result = await sequelize.query(sqlQuery, { replacements: {EmailId: req.body.emailId,Password:req.body.password}});
   console.log("result-sp_Login*****",result);
-  res.send({status:true, result:result[0]});
+  if(result[0].length == 0)
+    res.send({status:false, result:"wrong Emailid or password !"});
+  else
+   res.send({status:true, result:result[0]});
 }
 
 exports.saveToken = async (req, res) => {
-  console.log("token data*******",req.body);
+  console.log("token data*******",req.body);7
   const sqlQuery = 'sp_setdevicedata :message, :ip';
   const result = await sequelize.query(sqlQuery, { replacements: {message: req.body.token, ip: req.body.ip}});
   console.log("result-sp_insertToken*****",result);
